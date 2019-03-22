@@ -1,0 +1,14 @@
+{
+  "name": "DconToken-eth",
+  "version": "1.0.0",
+  "description": "Dream Conflux Ltd POC token nad ICO (just a test)",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "cryptocurrency", "ethereum", "token", "crypto", "blockchain", "ico" ],
+  "author": "Almos Gabor <almos@dreamconflux.com>",
+  "license": "ISC"
+}
