@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 import "./DconToken.sol";
 
 contract DconTokenSale {
-    address admin;
+    address payable admin;
     DconToken public tokenContract;
     uint256 public tokenPrice;
     uint256 public tokensSold;
@@ -28,6 +28,12 @@ contract DconTokenSale {
         tokensSold += _numberOfTokens;
 
         emit Sell(msg.sender, _numberOfTokens);
+    }
+
+    function endSale () public {
+        require(msg.sender == admin);
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
+        selfdestruct(admin);
     }
 
     function multiply(uint x, uint y) internal pure returns (uint z) {

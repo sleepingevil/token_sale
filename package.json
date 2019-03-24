@@ -8,7 +8,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [ "cryptocurrency", "ethereum", "token", "crypto", "blockchain", "ico" ],
+  "keywords": [
+    "cryptocurrency",
+    "ethereum",
+    "token",
+    "crypto",
+    "blockchain",
+    "ico"
+  ],
   "author": "Almos Gabor <almos@dreamconflux.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.26.1"
+  }
 }

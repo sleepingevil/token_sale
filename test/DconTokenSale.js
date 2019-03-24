@@ -1,3 +1,4 @@
+const R = require('ramda');
 const DconTokenSale = artifacts.require('./DconTokenSale.sol');
 const DconToken = artifacts.require('./DconToken.sol');
 
@@ -49,14 +50,14 @@ contract('DconTokenSale', accounts => {
         
         const error = await instance.buyTokens(numberOfTokens, { from: buyer, value: 1 }).catch(e => e);
 
-        assert(error.message.indexOf('revert') >= 0, 'error message must contain revert');
+        assert(R.propOr('', 'message', error).indexOf('revert') >= 0, 'error message must contain revert');
     });
 
     it('throws if trying to buy more than available token amount', async function() {
         const buyer = accounts[3];
         const tokensAvailable = 75;
 
-        const numberOfTokens = 90;
+        const numberOfTokens = 80;
         const tokenInstance = await DconToken.deployed();
         const instance = await DconTokenSale.deployed();
 
@@ -64,6 +65,25 @@ contract('DconTokenSale', accounts => {
 
         const error = await instance.buyTokens(numberOfTokens, { from: buyer, value: numberOfTokens * tokenPrice }).catch(e => e);
 
-        assert(error.message.indexOf('revert') >= 0, 'error message must contain revert');
+        assert(R.propOr('', 'message', error).indexOf('revert') >= 0, 'error message must contain revert');
+    });
+
+    it('should throw when ending token sale with non-admin', async function () {
+        const instance = await DconTokenSale.deployed();
+
+        const error = await instance.endSale({ from: accounts[3] }).catch(e => e);
+
+        assert(R.propOr('', 'message', error).indexOf('revert') >= 0, 'error message must contain revert');
+    });
+
+    it('should end sale', async function () {
+        const tokenInstance = await DconToken.deployed();
+        const instance = await DconTokenSale.deployed();
+
+        const receipt = await instance.endSale({ from: admin });
+
+        assert.equal((await tokenInstance.balanceOf(admin)).toNumber(), 999990, 'refund remaining tokens to admin');
+
+        assert.equal((await web3.eth.getCode(instance.address)), '0x', 'destroys the contract');
     });
 });
