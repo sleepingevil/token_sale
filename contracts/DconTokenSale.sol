@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 import "./DconToken.sol";
 
 contract DconTokenSale {
-    address payable admin;
+    address payable internal admin;
     DconToken public tokenContract;
     uint256 public tokenPrice;
     uint256 public tokensSold;

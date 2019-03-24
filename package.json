@@ -6,8 +6,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "lite-server"
+    "dev": "lite-server",
+    "console": "truffle console",
+    "migrate": "truffle migrate --reset",
+    "test": "truffle test"
   },
   "keywords": [
     "cryptocurrency",
@@ -21,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "lite-server": "^2.4.0",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "truffle": "^5.0.9"
   }
 }
