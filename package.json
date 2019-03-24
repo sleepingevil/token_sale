@@ -6,7 +6,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
   },
   "keywords": [
     "cryptocurrency",
@@ -19,6 +20,7 @@
   "author": "Almos Gabor <almos@dreamconflux.com>",
   "license": "ISC",
   "dependencies": {
+    "lite-server": "^2.4.0",
     "ramda": "^0.26.1"
   }
 }
