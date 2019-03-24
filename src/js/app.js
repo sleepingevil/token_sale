@@ -118,7 +118,7 @@ const App = {
 
         App.contracts.DconTokenSale.deployed().then(function (instance) {
             console.log(numberOfTokens * App.tokenPrice);
-            return instance.buyTokens(numberOfTokens, { from: App.account, value: numberOfTokens * App.tokenPrice, gas: 50000 });
+            return instance.buyTokens(numberOfTokens, { from: App.account, value: numberOfTokens * App.tokenPrice, gas: 70000 });
         }).then(function(result) {
             console.log("Tokens bought...");
             $('form')[0].reset();
